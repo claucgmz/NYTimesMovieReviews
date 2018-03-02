@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class MovieReview: Mappable {
+struct MovieReview: Mappable {
   var title = ""
   var headline = ""
   var releaseDate = ""
@@ -19,11 +19,11 @@ class MovieReview: Mappable {
   var articleText = ""
   var author = ""
   
-  required init?(map: Map) {
+  init?(map: Map) {
     
   }
   
-  func mapping(map: Map) {
+  mutating func mapping(map: Map) {
     title <- map["display_title"]
     headline <- map["headline"]
     releaseDate <- map ["opening_date"]
