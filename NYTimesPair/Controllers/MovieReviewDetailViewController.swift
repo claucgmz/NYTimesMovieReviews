@@ -20,23 +20,19 @@ class MovieReviewDetailViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    titleLabel.text = movieReview?.title
-    if let url = movieReview?.imageURL {
+    guard let review = movieReview else {
+      return
+    }
+    
+    titleLabel.text = review.title
+    if let url = review.imageURL {
       movieImage.af_setImage(withURL: url)
     }
-    headlineLabel.text = movieReview?.headline
-    if let author = movieReview?.author {
-      authorLabel.text = "by \(author)"
-    }
-    if let summary = movieReview?.summary {
-      summaryLabel.text = summary
-    }
-    if let date = movieReview?.releaseDate {
-      releaseDateLabel.text = "Release date: \(date != "" ? date : "TBA" )"
-    }
-    if let text = movieReview?.articleText {
-      articleURLLabel.text = "\(text) >>"
-    }
+    headlineLabel.text = review.headline
+    authorLabel.text = "by \(review.author)"
+    releaseDateLabel.text = "Release date: \(review.releaseDate != "" ? review.releaseDate : "TBA" )"
+    summaryLabel.text = review.summary
+    articleURLLabel.text = "\(review.articleText) >>"
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
