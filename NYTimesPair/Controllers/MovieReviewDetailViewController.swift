@@ -21,7 +21,7 @@ class MovieReviewDetailViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     titleLabel.text = movieReview?.title
-    if let url = URL(string: (movieReview?.imageURL)!) {
+    if let url = movieReview?.imageURL {
       movieImage.af_setImage(withURL: url)
     }
     headlineLabel.text = movieReview?.headline
@@ -42,7 +42,7 @@ class MovieReviewDetailViewController: UITableViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "fullArticle" {
       let controller = segue.destination as! WebViewController
-      controller.urlString = movieReview?.articleURL
+      controller.articleURL = movieReview?.articleURL
     }
   }
   

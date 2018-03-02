@@ -13,9 +13,9 @@ struct MovieReview: Mappable {
   var title = ""
   var headline = ""
   var releaseDate = ""
-  var imageURL = ""
+  var imageURL: URL?
   var summary = ""
-  var articleURL = ""
+  var articleURL: URL?
   var articleText = ""
   var author = ""
   
@@ -24,13 +24,13 @@ struct MovieReview: Mappable {
   }
   
   mutating func mapping(map: Map) {
-    title <- map["display_title"]
-    headline <- map["headline"]
+    title       <- map["display_title"]
+    headline    <- map["headline"]
     releaseDate <- map ["opening_date"]
-    imageURL <- map["multimedia.src"]
-    articleURL <- map["link.url"]
+    imageURL    <- (map["multimedia.src"], URLTransform())
+    articleURL  <- (map["link.url"], URLTransform())
     articleText <- map["link.suggested_link_text"]
-    summary <- map["summary_short"]
-    author <- map["byline"]
+    summary     <- map["summary_short"]
+    author      <- map["byline"]
   }
 }
