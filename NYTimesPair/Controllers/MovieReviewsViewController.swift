@@ -69,10 +69,3 @@ extension MovieReviewsViewController: UITableViewDelegate {
     performSegue(withIdentifier: "movieReviewDetail", sender: movieReviews[indexPath.row])
   }
 }
-
-extension MovieReviewDetailViewController: UITableViewDataSourcePrefetching {
-  func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-    
-  }
-  
-}
