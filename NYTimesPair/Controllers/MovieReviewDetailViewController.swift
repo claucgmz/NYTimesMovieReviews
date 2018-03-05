@@ -18,10 +18,6 @@ class MovieReviewDetailViewController: UITableViewController {
   @IBOutlet weak var releaseDateLabel: UILabel!
   @IBOutlet weak var articleURLLabel: UILabel!
   
-  enum ReviewItem: Int {
-    case selectable = 6
-  }
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     guard let review = movieReview else {
