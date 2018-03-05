@@ -20,38 +20,25 @@ class MovieReviewDetailViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    titleLabel.text = movieReview?.title
-    if let url = URL(string: (movieReview?.imageURL)!) {
+    guard let review = movieReview else {
+      return
+    }
+    
+    titleLabel.text = review.title
+    if let url = review.imageURL {
       movieImage.af_setImage(withURL: url)
     }
-    headlineLabel.text = movieReview?.headline
-    if let author = movieReview?.author {
-      authorLabel.text = "by \(author)"
-    }
-    if let summary = movieReview?.summary {
-      summaryLabel.text = summary
-    }
-    if let date = movieReview?.releaseDate {
-      releaseDateLabel.text = "Release date: \(date != "" ? date : "TBA" )"
-    }
-    if let text = movieReview?.articleText {
-      articleURLLabel.text = "\(text) >>"
-    }
+    headlineLabel.text = review.headline
+    authorLabel.text = "by \(review.author)"
+    releaseDateLabel.text = "Release date: \(review.releaseDate != "" ? review.releaseDate : "TBA" )"
+    summaryLabel.text = review.summary
+    articleURLLabel.text = "\(review.articleText) >>"
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "fullArticle" {
       let controller = segue.destination as! WebViewController
-      controller.urlString = movieReview?.articleURL
-    }
-  }
-  
-  override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-    if indexPath.row == 6 {
-      return indexPath
-    }
-    else{
-      return nil
+      controller.articleURL = movieReview?.articleURL
     }
   }
 }

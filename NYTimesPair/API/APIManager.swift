@@ -8,7 +8,10 @@
 
 import Foundation
 
-class APIManager {
+struct APIManager {
   static let baseURL = "https://api.nytimes.com/svc/movies/v2"
   static let key = "ef7c9be316a34ee58d0b344e1ddd9119"
+  static let resultsPerPage = 20
+  
+  static let reviews = "reviews/dvd-picks.json"
 }

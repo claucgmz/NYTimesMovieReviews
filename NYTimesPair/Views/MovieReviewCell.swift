@@ -16,7 +16,7 @@ class MovieReviewCell: UITableViewCell {
   @IBOutlet weak var releaseDateLabel: UILabel!
   
   func configure(with review: MovieReview) {
-    if let url = URL(string: review.imageURL) {
+    if let url = review.imageURL {
       thumbnailImage.af_setImage(withURL: url)
     }
     movieTitle.text = review.title

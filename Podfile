@@ -11,5 +11,7 @@ target 'NYTimesPair' do
   pod 'AlamofireObjectMapper', '~> 5.0'
   #AlamofireImage is an image component library for Alamofireåå
   pod 'AlamofireImage', '~> 3.3'
+  #A clean and lightweight progress HUD for your iOS and tvOS app. 
+  pod 'SVProgressHUD'
 
 end

@@ -9,13 +9,13 @@
 import Foundation
 import ObjectMapper
 
-class MovieReviewResponse: Mappable {
+struct MovieReviewResponse: Mappable {
   var reviews: [MovieReview]?
   
-  required init?(map: Map) {
+  init?(map: Map) {
   }
   
-  func mapping(map: Map) {
+  mutating func mapping(map: Map) {
     reviews <- map["results"]
   }
 }
