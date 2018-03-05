@@ -37,8 +37,6 @@ enum NYTimesRouter: URLRequestConvertible {
   func asURLRequest() throws -> URLRequest {
     let url = try APIManager.baseURL.asURL()
     var urlRequest = URLRequest(url: url.appendingPathComponent(path))
-    
-    print(urlRequest)
     urlRequest.httpMethod = method.rawValue
     return try URLEncoding.methodDependent.encode(urlRequest, with: parameters)
   }
