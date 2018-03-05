@@ -45,13 +45,4 @@ class MovieReviewDetailViewController: UITableViewController {
       controller.articleURL = movieReview?.articleURL
     }
   }
-  
-  override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-    if ReviewItem.selectable.rawValue == indexPath.row {
-      return indexPath
-    }
-    else{
-      return nil
-    }
-  }
 }
