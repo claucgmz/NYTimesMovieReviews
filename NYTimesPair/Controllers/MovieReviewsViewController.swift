@@ -12,22 +12,28 @@ import SVProgressHUD
 class MovieReviewsViewController: UIViewController {
   @IBOutlet weak var movieReviewTable: UITableView!
   var movieReviews = [MovieReview]()
+  var currentPage = 0
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    HUD(show: true)
     registerNibs()
-    NYTimesServices().getDVDPicks(onSuccess: { reviews in
-      self.movieReviews = reviews
-      self.movieReviewTable.reloadData()
-      self.HUD(show: false)
-    }, onFailure: {
-      
-    })
+    loadReviews()
   }
   
   private func registerNibs() {
     movieReviewTable.register(UINib(nibName: MovieReviewCell.reusableID, bundle: nil), forCellReuseIdentifier: MovieReviewCell.reusableID)
+  }
+  
+  private func loadReviews() {
+    self.HUD(show: true)
+    NYTimesServices().getDVDPicks(page: currentPage, onSuccess: { reviews in
+      self.movieReviews.append(contentsOf: reviews)
+      self.movieReviewTable.reloadData()
+      self.HUD(show: false)
+      self.currentPage += 1
+    }, onFailure: {
+  
+    })
   }
   
   private func HUD(show: Bool) {
@@ -61,6 +67,13 @@ extension MovieReviewsViewController: UITableViewDataSource {
     let review = movieReviews[indexPath.row]
     cell.configure(with: review)
     return cell
+  }
+  
+  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    let lastCell = movieReviews.count - 1
+    if lastCell == indexPath.row {
+      loadReviews()
+    }
   }
 }
 
