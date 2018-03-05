@@ -18,8 +18,8 @@ class MovieReviewDetailViewController: UITableViewController {
   @IBOutlet weak var releaseDateLabel: UILabel!
   @IBOutlet weak var articleURLLabel: UILabel!
   
-  enum ReviewItem {
-    case selectable
+  enum ReviewItem: Int {
+    case selectable = 6
   }
   
   override func viewDidLoad() {
@@ -47,7 +47,7 @@ class MovieReviewDetailViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-    if indexPath.row == 6 {
+    if ReviewItem.selectable.rawValue == indexPath.row {
       return indexPath
     }
     else{
