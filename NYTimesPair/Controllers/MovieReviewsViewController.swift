@@ -28,7 +28,8 @@ class MovieReviewsViewController: UIViewController {
       self.movieReviewTable.reloadData()
       self.toogleHUD(show: false)
       self.currentPage += 1
-    }, onFailure: {
+    }, onFailure: { error in
+      print(error)
     })
   }
   private func toogleHUD(show: Bool) {
@@ -45,7 +46,7 @@ class MovieReviewsViewController: UIViewController {
   }
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "movieReviewDetail" {
-      let controller = segue.destination as! MovieReviewDetailViewController
+      let controller = (segue.destination as? MovieReviewDetailViewController)!
       controller.movieReview = sender as? MovieReview
     }
   }
@@ -55,7 +56,7 @@ extension MovieReviewsViewController: UITableViewDataSource {
     return movieReviews.count
   }
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: MovieReviewCell.reusableID, for: indexPath) as! MovieReviewCell
+    let cell = (tableView.dequeueReusableCell(withIdentifier: MovieReviewCell.reusableID, for: indexPath) as? MovieReviewCell)!
     let review = movieReviews[indexPath.row]
     cell.configure(with: review)
     return cell
