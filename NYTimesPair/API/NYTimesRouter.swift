@@ -19,21 +19,18 @@ enum NYTimesRouter: URLRequestConvertible {
       return APIManager.reviews
     }
   }
-  
   var parameters: [String: Any] {
     switch self {
     case .getDVDPicks(let page):
       return ["offset": APIManager.resultsPerPage*page, "api-key": APIManager.key]
     }
   }
-  
   var method: HTTPMethod {
     switch self {
     case .getDVDPicks:
       return .get
     }
   }
-  
   func asURLRequest() throws -> URLRequest {
     let url = try APIManager.baseURL.asURL()
     var urlRequest = URLRequest(url: url.appendingPathComponent(path))
@@ -41,5 +38,3 @@ enum NYTimesRouter: URLRequestConvertible {
     return try URLEncoding.methodDependent.encode(urlRequest, with: parameters)
   }
 }
-
-

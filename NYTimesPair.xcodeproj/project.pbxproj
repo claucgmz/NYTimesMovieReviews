@@ -190,6 +190,7 @@
 				5FCC55822048BBC000BB0D70 /* Resources */,
 				B669E6FDA6C43C88D89FAF62 /* [CP] Embed Pods Frameworks */,
 				331A192A2F5364525654B9CC /* [CP] Copy Pods Resources */,
+				5F85542E2050A7AD00BAC2D3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -263,6 +264,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NYTimesPair/Pods-NYTimesPair-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		5F85542E2050A7AD00BAC2D3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		B669E6FDA6C43C88D89FAF62 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
