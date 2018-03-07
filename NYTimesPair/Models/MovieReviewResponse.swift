@@ -11,13 +11,9 @@ import ObjectMapper
 
 struct MovieReviewResponse: Mappable {
   var reviews: [MovieReview]?
-  
   init?(map: Map) {
   }
-  
   mutating func mapping(map: Map) {
     reviews <- map["results"]
   }
 }
-
-

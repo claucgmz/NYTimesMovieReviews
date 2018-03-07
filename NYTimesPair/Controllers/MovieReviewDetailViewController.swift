@@ -17,13 +17,11 @@ class MovieReviewDetailViewController: UITableViewController {
   @IBOutlet weak var summaryLabel: UILabel!
   @IBOutlet weak var releaseDateLabel: UILabel!
   @IBOutlet weak var articleURLLabel: UILabel!
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     guard let review = movieReview else {
       return
     }
-    
     titleLabel.text = review.title
     if let url = review.imageURL {
       movieImage.af_setImage(withURL: url)
@@ -34,10 +32,9 @@ class MovieReviewDetailViewController: UITableViewController {
     summaryLabel.text = review.summary
     articleURLLabel.text = "\(review.articleText) >>"
   }
-  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "fullArticle" {
-      let controller = segue.destination as! WebViewController
+      let controller = (segue.destination as? WebViewController)!
       controller.articleURL = movieReview?.articleURL
     }
   }
