@@ -19,6 +19,7 @@ enum NYTimesRouter: URLRequestConvertible {
       return APIManager.reviews
     }
   }
+  
   var parameters: [String: Any] {
     switch self {
     case .getDVDPicks(let page):

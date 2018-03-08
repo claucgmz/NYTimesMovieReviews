@@ -34,7 +34,9 @@ class MovieReviewDetailViewController: UITableViewController {
   }
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "fullArticle" {
-      let controller = (segue.destination as? WebViewController)!
+      guard let controller = segue.destination as? WebViewController else {
+        return
+      }
       controller.articleURL = movieReview?.articleURL
     }
   }
